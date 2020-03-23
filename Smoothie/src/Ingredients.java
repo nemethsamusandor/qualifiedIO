@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ingredients
 {
 
-    private static Map<String, String> menuOptions = Map.ofEntries(
+    private static Map<String, String> menuOptions = Stream.of(
         new AbstractMap.SimpleEntry<>("Classic", "strawberry,banana,pineapple,mango,peach,honey"),
         new AbstractMap.SimpleEntry<>("Freezie", "blackberry,blueberry,black currant,grape juice,frozen yogurt"),
         new AbstractMap.SimpleEntry<>("Greenie", "green apple, lime, avocado, spinach, ice, apple juice"),
         new AbstractMap.SimpleEntry<>("Just Desserts", "banana, ice cream, chocolate, peanut, cherry")
-    );
+    ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     public static void main(String[] args)
     {
@@ -26,14 +27,14 @@ public class Ingredients
 
     }
 
-    public static String getIngredients(final String customerRequest)
+    public static String getIngredients(final String order)
     {
-        List<String> customerRequestList = new ArrayList<>(Arrays.asList(customerRequest.trim().split("\\s*,\\s*")));
-
-        if (customerRequestList.isEmpty())
+        if (order.trim().isEmpty())
         {
             throw new IllegalArgumentException("Order is empty!");
         }
+
+        List<String> customerRequestList = new ArrayList<>(Arrays.asList(order.trim().split("\\s*,\\s*")));
 
         // Smoothie name
         String name = customerRequestList.get(0);
