@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -11,10 +12,10 @@ public class DiskSpace
     {
         System.out.println("Case 1: " + isWritable(1, 1, null));
         System.out.println("Case 1: " + isWritable(1, 1, new HashSet<>()));
-        System.out.println("Case 2: " + isWritable(1, 1, Stream.of(1).collect(Collectors.toCollection(HashSet::new))));
-        System.out.println("Case 3: " + isWritable(4, 2, Stream.of(1, 4).collect(Collectors.toCollection(HashSet::new))));
-        System.out.println("Case 4: " + isWritable(10, 2, Stream.of(2, 3, 5, 7).collect(Collectors.toCollection(HashSet::new))));
-        System.out.println("Case 4: " + isWritable(10, 2, Stream.of(2, 3, 5, 7, 9, null, null).collect(Collectors.toCollection(HashSet::new))));
+        System.out.println("Case 2: " + isWritable(1, 1, new HashSet<>(Arrays.asList(1))));
+        System.out.println("Case 3: " + isWritable(4, 2, new HashSet<>(Arrays.asList(1, 4))));
+        System.out.println("Case 4: " + isWritable(10, 2, new HashSet<>(Arrays.asList(2, 3, 5, 7))));
+        System.out.println("Case 4: " + isWritable(10, 2, new HashSet<>(Arrays.asList(3, 2, 5, 5, null, null, 7, 9))));
     }
 
     private static boolean isWritable(int blockSize, int fileSize, Set<Integer> occupiedSectors)
