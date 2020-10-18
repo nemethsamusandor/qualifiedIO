@@ -9,10 +9,9 @@ import java.util.stream.Stream;
 
 public class Ingredients
 {
-
     private static Map<String, String> menuOptions = Stream.of(
-        new AbstractMap.SimpleEntry<>("Classic", "strawberry,banana,pineapple,mango,peach,honey"),
-        new AbstractMap.SimpleEntry<>("Freezie", "blackberry,blueberry,black currant,grape juice,frozen yogurt"),
+        new AbstractMap.SimpleEntry<>("Classic", "strawberry, banana, pineapple, mango, peach, honey"),
+        new AbstractMap.SimpleEntry<>("Freezie", "blackberry, blueberry, black currant, grape juice, frozen yogurt"),
         new AbstractMap.SimpleEntry<>("Greenie", "green apple, lime, avocado, spinach, ice, apple juice"),
         new AbstractMap.SimpleEntry<>("Just Desserts", "banana, ice cream, chocolate, peanut, cherry")
     ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -29,7 +28,7 @@ public class Ingredients
 
     public static String getIngredients(final String order)
     {
-        if (order.trim().isEmpty())
+        if (order == null || order.trim().isEmpty())
         {
             throw new IllegalArgumentException("Order is empty!");
         }
