@@ -59,8 +59,10 @@ public class IngredientsTest
         Ingredients.getIngredients("Vitamin smoothie");
     }
 
-    private boolean isSorted(String csvList) {
-        if (csvList == null || csvList.isEmpty()) {
+    private boolean isSorted(String csvList)
+    {
+        if (csvList == null || csvList.isEmpty())
+        {
             return true;
         }
 
@@ -73,16 +75,18 @@ public class IngredientsTest
 
         Iterator<String> iter = listOfStrings.iterator();
         String current, previous = iter.next();
-        while (iter.hasNext()) {
+
+        while (iter.hasNext())
+        {
             current = iter.next();
-            if (previous.compareTo(current) > 0) {
+            if (previous.compareTo(current) > 0)
+            {
                 return false;
             }
             previous = current;
         }
+
         return true;
     }
-
-    // Requesting Classic with additional chocolate "Classic,chocolate" should result in IllegalArgumentException being thrown. Same result should apply for requesting a smoothie that is not present in the menu "Vitamin smoothie".
 
 }

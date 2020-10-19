@@ -48,24 +48,20 @@ public class Ingredients
         customerRequestList.remove(0);
 
         List<String> smoothieIngredients = new ArrayList<>(Arrays.asList(menuOptions.get(name).split("\\s*,\\s*")));
-        List<String> customersSmoothie = new ArrayList<>(smoothieIngredients);
 
         for (String actualIngredient : customerRequestList)
         {
-            String[] actualIngredients = actualIngredient.split("-");
+            boolean removeIngredient = actualIngredient.startsWith("-");
 
-            if (actualIngredients.length == 1 && !smoothieIngredients.contains(actualIngredients[0]))
+            if (!removeIngredient)
             {
-                throw new IllegalArgumentException("Not possible to add '" + actualIngredients[0] + "' to ingredients");
+                throw new IllegalArgumentException("Not possible to add '" + actualIngredient + "' to ingredients");
             }
 
-            if (actualIngredients.length > 1)
-            {
-                customersSmoothie.remove(actualIngredients[1]);
-            }
+            smoothieIngredients.remove(actualIngredient.substring(1));
         }
 
-        return customersSmoothie.stream()
+        return smoothieIngredients.stream()
             .sorted()
             .collect(Collectors.joining(","));
     }
